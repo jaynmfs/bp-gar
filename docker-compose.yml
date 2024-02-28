@@ -1,0 +1,21 @@
+version: '3.8'
+
+services:
+  gar:
+    image: gar-linux:latest
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        - RUNNER_VERSION=2.313.0
+    container_name: gar-linux
+    restart: unless-stopped
+    networks:
+      - gar_network
+    env_file:
+      - .env
+
+networks:
+  gar_network:
+    external: true
+    name: net101
